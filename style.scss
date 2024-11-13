@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+
+$color_dasar: #FFFDD0;
+$color_aksen: #6F4E37;
+$color_tulisan: #3c4a1f;
+$color_alter: #ec8f00;
+
+$dropshadow_light: 0px 4px 4px rgba(0,0,0,0.40);
+$morph-up: 2px 2px 4px #bfbe9c,-2px -2px 8px #c5c5c5;;
+$morph-down: inset 2px 2px 8px #bfbe9c, inset -2px -2px 8px #ffffff;
+
+$breakpoints-up: ("medium": "730px", "large": "1024px");
+
+@mixin neomorph-card{
+  border-radius: 8px;
+  background: $color_dasar;
+  box-shadow: $morph-up;
+  h2 {
+    align-self: stretch;
+    text-align: center;
+    border-radius: 8px;
+    padding: 4px;
+    margin: 0 0 8px 0;
+    box-shadow: $morph-down;
+  }
+}
+
+@mixin flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin button-ico {
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  background-position: 8px center;
+  padding-left: 16px;
+}
+
+@mixin breakpoint-up($size){
+  @media (min-width: map-get($breakpoints-up, $size)){
+    @content;
+  }
+}
+
+body {
+  font-family: "Crimson Text", serif;
+  margin: 0;
+  padding: 0;
+  background-color: $color_dasar;
+  p, h1, h2, h3, label, button {
+    color: $color_tulisan;
+  }
+  p {
+    font-size: 18px;
+  }
+}
+
+header {
+  text-align: center;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  right: 0%;
+  bottom: auto;
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background: $color_aksen;
+  box-shadow: $dropshadow_light;
+  h1 {
+    color: $color_alter;
+  }
+}
+
+main {
+  padding-top: 64px;
+  display: grid; 
+  grid-template-columns: 1fr;
+  gap: 8px;
+  @include breakpoint-up(medium) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @include breakpoint-up(large) {
+    grid-template-rows: 1fr auto;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  section {
+    margin: 8px;
+    padding: 8px;
+    @include flex-col();
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    @include neomorph-card();
+    h2 {
+      color: $color_alter;
+    }
+    #incompleteBookList, #completeBookList {
+      border-radius: 8px;
+      max-height: 600px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      box-shadow: $morph-down;
+      @include flex-col();
+      ::-webkit-scrollbar-track {
+        background: $color_aksen; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #888; 
+        border-radius: 10px; 
+      }
+      div {
+        border-radius: 8px;
+        margin: 8px;
+        padding: 8px;
+        box-shadow: $morph-up;
+        @include flex-col();
+        align-items: baseline;
+        h3, p {
+          margin: 0;
+        }
+        div {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          box-shadow: none;
+          gap: 8px;
+          margin: 0;
+          padding: 0;
+        }
+      }
+    }
+    @include breakpoint-up(medium) {
+      &:nth-of-type(1) {
+        grid-column-start: 1;
+      }
+    }
+    @include breakpoint-up(large) {
+      &:nth-of-type(1) {
+        grid-row-start: 1;
+        grid-column-start: 1;
+        grid-row-end: 3;
+        grid-column-end: 1;
+      }
+      &:nth-of-type(2) {
+        grid-row-start: 1;
+        grid-column-start: 2;
+        grid-row-end: 1;
+        grid-column-end: 4;
+      }
+      &:nth-of-type(3) {
+        grid-row-start: 2;
+        grid-column-start: 2;
+        grid-row-end: auto;
+        grid-column-end: 2;
+      }
+      &:nth-of-type(4) {        
+        grid-row-start: 2;
+        grid-column-start: 3;
+        grid-row-end: auto;
+        grid-column-end: 3;
+      }
+    }
+  }
+}
+
+form {
+  @include flex-col();
+  div {
+    margin-bottom: 6px;
+    @include flex-col();
+    #bookFormIsComplete {
+      align-self: flex-start;
+    }
+  }
+}
+
+input {
+  font-family: "Crimson Text", serif;
+  background: $color_dasar;
+  border: 1px none $color_aksen;
+  border-radius: 8px;
+  box-sizing: border-box;
+  outline: none;
+  box-shadow: $morph-down;
+}
+
+button {
+  background-color: $color_dasar;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px none $color_aksen;
+  margin-top: 6px;
+  height: 32px;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 12px;
+  box-shadow: $morph-up;
+  &:hover {
+    font-weight: 400;
+    font-style: normal;
+    color: $color_alter;
+    box-shadow: $morph-down;
+  }
+  &#bookFormSubmit {
+    background-image: url('icon/check.svg');
+    @include button-ico();
+  }
+  &#searchSubmit {
+    background-image: url('icon/search.svg');
+    @include button-ico();
+  }
+  &[data-testid=bookItemIsCompleteButton] {
+    background-image: url('icon/check.svg');
+    width: 80px;
+    @include button-ico();
+  }
+  &[data-testid=bookItemDeleteButton] {
+    background-image: url('icon/delete.svg');
+    width: 80px;
+    @include button-ico();
+  }
+  &[data-testid=bookItemEditButton] {
+    background-image: url('icon/edit.svg');
+    width: 76px;
+    &:hover{
+      font-size: 10px;
+    }
+    @include button-ico();
+  }
+}

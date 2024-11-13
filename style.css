@@ -1,0 +1,224 @@
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap");
+body {
+  font-family: "Crimson Text", serif;
+  margin: 0;
+  padding: 0;
+  background-color: #FFFDD0;
+}
+body p, body h1, body h2, body h3, body label, body button {
+  color: #3c4a1f;
+}
+body p {
+  font-size: 18px;
+}
+
+header {
+  text-align: center;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  right: 0%;
+  bottom: auto;
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background: #6F4E37;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+}
+header h1 {
+  color: #ec8f00;
+}
+
+main {
+  padding-top: 64px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+@media (min-width: 730px) {
+  main {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 1024px) {
+  main {
+    grid-template-rows: 1fr auto;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+main section {
+  margin: 8px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  border-radius: 8px;
+  background: #FFFDD0;
+  box-shadow: 2px 2px 4px #bfbe9c, -2px -2px 8px #c5c5c5;
+}
+main section h2 {
+  align-self: stretch;
+  text-align: center;
+  border-radius: 8px;
+  padding: 4px;
+  margin: 0 0 8px 0;
+  box-shadow: inset 2px 2px 8px #bfbe9c, inset -2px -2px 8px #ffffff;
+}
+main section h2 {
+  color: #ec8f00;
+}
+main section #incompleteBookList, main section #completeBookList {
+  border-radius: 8px;
+  max-height: 600px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  box-shadow: inset 2px 2px 8px #bfbe9c, inset -2px -2px 8px #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+main section #incompleteBookList ::-webkit-scrollbar-track, main section #completeBookList ::-webkit-scrollbar-track {
+  background: #6F4E37;
+}
+main section #incompleteBookList ::-webkit-scrollbar-thumb, main section #completeBookList ::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+main section #incompleteBookList div, main section #completeBookList div {
+  border-radius: 8px;
+  margin: 8px;
+  padding: 8px;
+  box-shadow: 2px 2px 4px #bfbe9c, -2px -2px 8px #c5c5c5;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+main section #incompleteBookList div h3, main section #incompleteBookList div p, main section #completeBookList div h3, main section #completeBookList div p {
+  margin: 0;
+}
+main section #incompleteBookList div div, main section #completeBookList div div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: none;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+}
+@media (min-width: 730px) {
+  main section:nth-of-type(1) {
+    grid-column-start: 1;
+  }
+}
+@media (min-width: 1024px) {
+  main section:nth-of-type(1) {
+    grid-row-start: 1;
+    grid-column-start: 1;
+    grid-row-end: 3;
+    grid-column-end: 1;
+  }
+  main section:nth-of-type(2) {
+    grid-row-start: 1;
+    grid-column-start: 2;
+    grid-row-end: 1;
+    grid-column-end: 4;
+  }
+  main section:nth-of-type(3) {
+    grid-row-start: 2;
+    grid-column-start: 2;
+    grid-row-end: auto;
+    grid-column-end: 2;
+  }
+  main section:nth-of-type(4) {
+    grid-row-start: 2;
+    grid-column-start: 3;
+    grid-row-end: auto;
+    grid-column-end: 3;
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+form div {
+  margin-bottom: 6px;
+  display: flex;
+  flex-direction: column;
+}
+form div #bookFormIsComplete {
+  align-self: flex-start;
+}
+
+input {
+  font-family: "Crimson Text", serif;
+  background: #FFFDD0;
+  border: 1px none #6F4E37;
+  border-radius: 8px;
+  box-sizing: border-box;
+  outline: none;
+  box-shadow: inset 2px 2px 8px #bfbe9c, inset -2px -2px 8px #ffffff;
+}
+
+button {
+  background-color: #FFFDD0;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px none #6F4E37;
+  margin-top: 6px;
+  height: 32px;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 12px;
+  box-shadow: 2px 2px 4px #bfbe9c, -2px -2px 8px #c5c5c5;
+}
+button:hover {
+  font-weight: 400;
+  font-style: normal;
+  color: #ec8f00;
+  box-shadow: inset 2px 2px 8px #bfbe9c, inset -2px -2px 8px #ffffff;
+}
+button#bookFormSubmit {
+  background-image: url("icon/check.svg");
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  background-position: 8px center;
+  padding-left: 16px;
+}
+button#searchSubmit {
+  background-image: url("icon/search.svg");
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  background-position: 8px center;
+  padding-left: 16px;
+}
+button[data-testid=bookItemIsCompleteButton] {
+  background-image: url("icon/check.svg");
+  width: 80px;
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  background-position: 8px center;
+  padding-left: 16px;
+}
+button[data-testid=bookItemDeleteButton] {
+  background-image: url("icon/delete.svg");
+  width: 80px;
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  background-position: 8px center;
+  padding-left: 16px;
+}
+button[data-testid=bookItemEditButton] {
+  background-image: url("icon/edit.svg");
+  width: 76px;
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  background-position: 8px center;
+  padding-left: 16px;
+}
+button[data-testid=bookItemEditButton]:hover {
+  font-size: 10px;
+}/*# sourceMappingURL=style.css.map */
